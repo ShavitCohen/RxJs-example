@@ -1,0 +1,14 @@
+#container {
+    width: 500px;
+    height: 500px;
+    border: 1px solid gray;
+}
+
+#box {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-color: green;
+}
+        
+        
