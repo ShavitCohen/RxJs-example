@@ -1,8 +1,8 @@
 (function () {
 
-    /***************************************************************************
-     ******* Example 1 - Populating ul from array by using Observable **********
-     ***************************************************************************/
+    /*******************************************************
+     ******* Example 1 - Populating ul from array **********
+     *******************************************************/
     const Observable = Rx.Observable;
 
     const arr = [
@@ -14,11 +14,11 @@
         { url: 'http://www.tikalk.com', text: 'Tikal' }
     ];
 
-    const arr$ = Observable.from(arr);                      //creating an Observable source from an array
+    const arr$ = Observable.from(arr);
 
     const filteredItems$ = arr$
-        .filter(item => !!item.url)                         //filtering items where the url value is missing
-        .map(item => {                                      //mapping to <li> elements
+        .filter(item => !!item.url)
+        .map(item => {
             const li = document.createElement('li'),
                 a = document.createElement('a');
 
@@ -28,14 +28,14 @@
             li.appendChild(a);
 
             return li;
-        });
+        })
 
-    const observer = {                                      //creating the observer manually which populate the ul
+    const observer = {
         next: item => document.getElementById('my-list').appendChild(item),
         error: err => console.log('err'),
         complete: () => console.log('operation complete')
     }
 
-    filteredItems$.subscribe(observer);                     //subscribing to the Observable
+    filteredItems$.subscribe(observer);
 
 })();
