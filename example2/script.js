@@ -1,7 +1,7 @@
 (function () {
 
     /*******************************************************
-     ******* Example 1 - Populating ul from array **********
+     ******* Example 2 - Populating ul from array **********
      *******************************************************/
     const Observable = Rx.Observable;
 

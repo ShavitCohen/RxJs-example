@@ -1,7 +1,7 @@
 (function () {
 
     /***************************************?**********
-     ******* Example 2 From mousemove events **********
+     ******* Example 4 Type like effect ***************
      **************************************************/
     const Observable = Rx.Observable;
 
