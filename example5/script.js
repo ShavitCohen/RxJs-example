@@ -8,6 +8,6 @@
     const showName = document.querySelector('.show-name');
     const plot = document.querySelector('.plot');
     let showIndex = 1;
-    const API_URL = `https://api.tvmaze.com/${showIndex}?embed[]=cast&embed[]=seasons`;
+    const API_URL = `https://api.tvmaze.com/shows/${showIndex}?embed[]=cast&embed[]=seasons`;
 
 })();
