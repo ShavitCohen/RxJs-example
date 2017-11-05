@@ -7,23 +7,24 @@
 	const img = document.querySelector('img');
 	const showName = document.querySelector('.show-name');
 	const plot = document.querySelector('.plot');
+	const getApiUrl = index => `https://api.tvmaze.com/shows/${index}?embed[]=cast&embed[]=seasons`;
 	
-	const showsObservable$ = Observable.create(observer =>{
-		const BASE_URL = 'https://api.tvmaze.com';
-		const startIndex = 1;
-		Observable.interval(2000)
-		.subscribe(index =>{
-			const url = `${BASE_URL}/shows/${index + startIndex}?embed[]=cast&embed[]=seasons`;
-			fetch(url).then(response =>{
-				// Examine the text in the response
-				response.json().then(data =>{
-					observer.next(data);
-				});
+	const showsObservable$ = startIndex =>{
+		return Observable.create(observer =>{
+			Observable.interval(2000)
+			.subscribe(index =>{
+				const url = getApiUrl(index + startIndex);
+				fetch(url).then(response =>{
+					// Examine the text in the response
+					response.json().then(data =>{
+						observer.next(data);
+					});
+				})
 			})
-		})
-	});
+		});
+	};
 	
-	showsObservable$
+	showsObservable$(60)
 	.filter(data => data.code !== 0)
 	.subscribe(data =>{
 		showName.innerHTML = data.name;
