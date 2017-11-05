@@ -24,7 +24,7 @@
 		});
 	};
 	
-	showsObservable$(60)
+	showsObservable$(1)
 	.filter(data => data.code !== 0)
 	.subscribe(data =>{
 		showName.innerHTML = data.name;
