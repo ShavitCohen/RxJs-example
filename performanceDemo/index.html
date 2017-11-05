@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <link href="./style.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container">
+    <h2>Performance Test</h2>
+
+    <input type="number" placeholder="Size of The Array" id="arraySizeInput">
+    <button id="testButton">Test</button>
+
+    <table>
+        <tr>
+            <th>Non RxJS</th>
+            <th>RxJS Stream$</th>
+        </tr>
+        <tr>
+            <td><span id="nonRxSpan"></span></td>
+            <td><span id="rxSpan"></span></td>
+        </tr>
+    </table>
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.3.0/Rx.js'></script>
+<script src='./script.js'></script>
+</body>
+
+</html>
