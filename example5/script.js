@@ -1,8 +1,8 @@
 (function (){
 	
-	/*********************************************************************
-	 ******* Example 5 Creating Observable and using API events **********
-	 *********************************************************************/
+	/**************************************************************
+	 ******* Example 5 Creating Observable and using API **********
+	 **************************************************************/
 	
 	const Observable = Rx.Observable;
 	const img = document.querySelector('img');
