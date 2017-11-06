@@ -1,8 +1,9 @@
 (function (){
 	
-	/***************************************?**********
-	 ******* Example 2 From mousemove events **********
-	 **************************************************/
+	/*********************************************************************
+	 ******* Example 5 Creating Observable and using API events **********
+	 *********************************************************************/
+	
 	const Observable = Rx.Observable;
 	const img = document.querySelector('img');
 	const showName = document.querySelector('.show-name');
