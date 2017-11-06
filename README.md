@@ -6,5 +6,5 @@ This Repo holds simple 5 examples of using RxJS:
 * [Example2](https://shavitcohen.github.io/RxJs-example/example2/) - Observable as a source from an array (DOM - menu)
 * [Example3](https://shavitcohen.github.io/RxJs-example/example3/) - Observable as a source from DOM events (track mouse)
 * [Example4](https://shavitcohen.github.io/RxJs-example/example4/) - Typing effect
-* [Example5](https://shavitcohen.github.io/RxJs-example/example5/) - Crate Observable + Ajax call using tvmaze.com API
+* [Example5](https://shavitcohen.github.io/RxJs-example/example5/) - Create Observable + Ajax call using tvmaze.com API
 * [Performance Test](https://shavitcohen.github.io/RxJs-example/performanceDemo/) - Simple performance test
