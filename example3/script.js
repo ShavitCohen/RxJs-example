@@ -16,7 +16,7 @@
 	const trackMouse$ =
 		events$
 		.delay(500)
-		.map(item => ({ left: item.clientX, top: item.clientY }))
+		.map(e => ({ left: e.clientX, top: e.clientY }))
 		.takeUntil(unsubscribeButtonClick$);
 	
 	subscribeButtonClick$.switchMap(e => trackMouse$)
