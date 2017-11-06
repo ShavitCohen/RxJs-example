@@ -12,15 +12,11 @@
 	const showsObservable$ = startIndex =>{
 		return Observable.create(observer =>{
 			Observable.interval(2000)
-			.subscribe(index =>{
+			.switchMap((index) =>{
 				const url = getApiUrl(index + startIndex);
-				fetch(url).then(response =>{
-					// Examine the text in the response
-					response.json().then(data =>{
-						observer.next(data);
-					});
-				})
+				return Observable.fromPromise(fetch(url).then(response => response.json()))
 			})
+			.subscribe(data => observer.next(data))
 		});
 	};
 	
