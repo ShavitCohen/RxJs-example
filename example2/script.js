@@ -3,7 +3,8 @@
   /*******************************************************
    ******* Example 2 - Populating ul from array **********
    *******************************************************/
-  const Observable = Rx.Observable;
+  const { from } = rxjs;
+  const { filter, map } = rxjs.operators;
 
   const arr = [
     { url: 'http://www.google.com', text: 'Google' },
@@ -14,10 +15,11 @@
     { url: 'http://www.tikalk.com', text: 'Tikal' },
   ];
 
-  const arr$ =
-    Observable.from(arr)
-      .filter(item => !!item.url)
-      .map(item => {
+  const source$ = from(arr);
+  const arr$ = source$
+    .pipe(
+      filter(item => !!item.url),
+      map(item => {
         const li = document.createElement('li'),
           a = document.createElement('a');
 
@@ -27,7 +29,8 @@
         li.appendChild(a);
 
         return li;
-      });
+      }),
+    );
 
   const observer = {
     next: item => document.getElementById('my-list').appendChild(item),

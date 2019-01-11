@@ -3,23 +3,28 @@
   /***************************************?**********
    ******* Example 3 From mousemove events **********
    **************************************************/
-  const Observable = Rx.Observable;
+  const { fromEvent } = rxjs;
+  const { delay, map, takeUntil, switchMap } = rxjs.operators;
 
-  const container = document.querySelector('#container'),
-    box = container.querySelector('#box'),
-    unsubscribeButton = container.querySelector('#unsubscribe-button'),
-    subscribeButton = container.querySelector('#subscribe-button'),
-    subscribeButtonClick$ = Observable.fromEvent(subscribeButton, 'click'),
-    unsubscribeButtonClick$ = Observable.fromEvent(unsubscribeButton, 'click'),
-    events$ = Observable.fromEvent(container, 'mousemove');
+  const container = document.querySelector('#container');
+  const box = container.querySelector('#box');
+  const unsubscribeButton = container.querySelector('#unsubscribe-button');
+  const subscribeButton = container.querySelector('#subscribe-button');
 
-  const trackMouse$ =
-    events$
-      .delay(500)
-      .map(e => ({ left: e.clientX, top: e.clientY }))
-      .takeUntil(unsubscribeButtonClick$);
+  const subscribeButtonClick$ = fromEvent(subscribeButton, 'click');
+  const unsubscribeButtonClick$ = fromEvent(unsubscribeButton, 'click');
+  const events$ = fromEvent(container, 'mousemove');
 
-  subscribeButtonClick$.switchMap(e => trackMouse$)
+  const trackMouse$ = events$.pipe(
+    delay(500),
+    map(e => ({ left: e.clientX, top: e.clientY })),
+    takeUntil(unsubscribeButtonClick$),
+  );
+
+  subscribeButtonClick$
+    .pipe(
+      switchMap(e => trackMouse$),
+    )
     .subscribe( //subscribing the observer anonymusly and not like in Example 1 when we created a const of the observer
       item => { //next
         box.style.left = item.left;

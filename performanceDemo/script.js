@@ -3,9 +3,11 @@
   /***********************************
    ******* Performance Test **********
    ***********************************/
-  const Observable = Rx.Observable;
+  const { fromEvent, from } = rxjs;
+  const { filter, map } = rxjs.operators;
 
-  const testButtonClick$ = Observable.fromEvent(document.querySelector('#testButton'), 'click');
+  const testButton = document.querySelector('#testButton');
+  const testButtonClick$ = fromEvent(testButton, 'click');
 
   const nonRxJsProcess = (arr, span) => {
     const time = new Date().getTime();
@@ -20,10 +22,12 @@
   const rxJsTProcess = (arr, span) => {
     const time = new Date().getTime();
 
-    const stream$ =
-      Observable.from(arr)
-        .filter(v => v !== null)
-        .map(v => v * 10);
+    const source$ = from(arr);
+    const stream$ = source$
+      .pipe(
+        filter(v => v !== null),
+        map(v => v * 10),
+      );
 
     stream$.subscribe({ complete: () => span.innerHTML = new Date().getTime() - time });
   };
@@ -40,7 +44,9 @@
   };
 
   testButtonClick$
-    .map(() => document.querySelector('#arraySizeInput').value)
+    .pipe(
+      map(() => document.querySelector('#arraySizeInput').value),
+    )
     .subscribe(arrSize => performanceTest(arrSize));
 
 })();
